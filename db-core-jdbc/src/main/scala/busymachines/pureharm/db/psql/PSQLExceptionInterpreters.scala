@@ -1,19 +1,19 @@
-/** Copyright (c) 2019 BusyMachines
-  *
-  * See company homepage at: https://www.busymachines.com/
-  *
-  * Licensed under the Apache License, Version 2.0 (the "License");
-  * you may not use this file except in compliance with the License.
-  * You may obtain a copy of the License at
-  *
-  * http://www.apache.org/licenses/LICENSE-2.0
-  *
-  * Unless required by applicable law or agreed to in writing, software
-  * distributed under the License is distributed on an "AS IS" BASIS,
-  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  * See the License for the specific language governing permissions and
-  * limitations under the License.
-  */
+/*
+ * Copyright 2019 BusyMachines
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package busymachines.pureharm.db.psql
 
 import busymachines.pureharm.db._
@@ -92,7 +92,8 @@ object PSQLExceptionInterpreters {
 
   }
 
-  /** Only call when [[PSQLException#getSQLState]] == [[PSQLStates.UniqueViolation]]
+  /** Only call when org.postgresql.util.PSQLException#getSQLState ==
+    *    org.postgresql.util.PSQLStates.UniqueViolation]]
     *
     * Will attempt to extract the values of the state by doing regex over the
     * error message... yey, java?
@@ -102,7 +103,8 @@ object PSQLExceptionInterpreters {
       .unique[Attempt](e.getServerErrorMessage.getDetail)
       .map(t => DBUniqueConstraintViolationAnomaly(t._1, t._2))
 
-  /** Only call when [[PSQLException#getSQLState]] == [[PSQLStates.ForeignKeyViolation]]
+  /** Only call when org.postgresql.util.PSQLException#getSQLState == 
+   *  org.postgresql.util.PSQLStates.ForeignKeyViolation
     *
     * Will attempt to extract the values of the state by doing regex over the
     * error message... yey, java?
