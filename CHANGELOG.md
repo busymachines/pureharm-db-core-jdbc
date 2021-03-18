@@ -11,5 +11,6 @@ Split out from [pureharm](https://github.com/busymachines/pureharm) as of versio
 
 :warning: Breaking changes :warning:
 - renamed module maven artifact ID from `pureharm-db-core-psql` to `pureharm-db-core-jdbc`
+- renamed package `busymachines.pureharm.db.psql` -> `busymachines.pureharm.db.pgjdbc`
 
 # 0.1.0
