@@ -35,12 +35,12 @@ ThisBuild / sonatypeCredentialHost := "s01.oss.sonatype.org"
 ThisBuild / baseVersion  := "0.1.0"
 ThisBuild / organization := "com.busymachines"
 ThisBuild / organizationName := "BusyMachines"
-ThisBuild / homepage     := Option(url("https://github.com/busymachines/pureharm-db-core"))
+ThisBuild / homepage     := Option(url("https://github.com/busymachines/pureharm-db-core-jdbc"))
 
 ThisBuild / scmInfo := Option(
   ScmInfo(
-    browseUrl  = url("https://github.com/busymachines/pureharm-db-core"),
-    connection = "git@github.com:busymachines/pureharm-db-core.git",
+    browseUrl  = url("https://github.com/busymachines/pureharm-db-core-jdbc"),
+    connection = "git@github.com:busymachines/pureharm-db-core-jdbc.git",
   )
 )
 
