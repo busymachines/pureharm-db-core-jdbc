@@ -32,7 +32,7 @@ object PSQLExceptionInterpreters {
     val UniqueViolation:     String = PSQLState.UNIQUE_VIOLATION.getState
   }
 
-  object PSQLErrorParsers {
+  private[psql] object PSQLErrorParsers {
     import atto._, Atto._
     private val underscore  = char('_')
     private val closeParens = char(')')
@@ -44,7 +44,7 @@ object PSQLExceptionInterpreters {
 
     /** Consumes the last parenthesis as well
       */
-    def untilLastClosedParens: Parser[String] = for {
+    private def untilLastClosedParens: Parser[String] = for {
       head      <- manyUntil(anyChar, closeParens).map(_.mkString(""))
       remaining <- get
       tail      <- if (remaining.contains(')')) untilLastClosedParens else "".pure[Parser]
@@ -55,9 +55,9 @@ object PSQLExceptionInterpreters {
       *   Key (id)=(row1_id) already exists.
       * }}}
       */
-    object unique {
+    private[psql] object unique {
 
-      val parser: Parser[(String, String)] = for {
+      private val parser: Parser[(String, String)] = for {
         _          <- string("Key (")
         columnName <- column
         _          <- string(")=(")
@@ -65,7 +65,7 @@ object PSQLExceptionInterpreters {
         _          <- string(" already exists.")
       } yield (columnName, value)
 
-      def apply[F[_]: MonadAttempt](s: String): F[(String, String)] =
+      def apply[F[_]: MonadThrow](s: String): F[(String, String)] =
         parser.parse(s).done.either.leftMap(s => new RuntimeException(s): Throwable).liftTo[F]
 
     }
@@ -75,7 +75,7 @@ object PSQLExceptionInterpreters {
       *   Key (row_id)=(120-3921-039213) is not present in table "pureharm_rows".
       * }}}
       */
-    object foreignKey {
+    private[psql] object foreignKey {
 
       private val parser: Parser[(String, String, String)] = for {
         _          <- string("Key (")
@@ -86,7 +86,7 @@ object PSQLExceptionInterpreters {
         table      <- untilNextDoubleQuote
       } yield (columnName, value, table)
 
-      def apply[F[_]: MonadAttempt](s: String): F[(String, String, String)] =
+      def apply[F[_]: MonadThrow](s: String): F[(String, String, String)] =
         parser.parse(s).done.either.leftMap(s => new RuntimeException(s): Throwable).liftTo[F]
     }
 
@@ -103,8 +103,8 @@ object PSQLExceptionInterpreters {
       .unique[Attempt](e.getServerErrorMessage.getDetail)
       .map(t => DBUniqueConstraintViolationAnomaly(t._1, t._2))
 
-  /** Only call when org.postgresql.util.PSQLException#getSQLState == 
-   *  org.postgresql.util.PSQLStates.ForeignKeyViolation
+  /** Only call when org.postgresql.util.PSQLException#getSQLState ==
+    *  org.postgresql.util.PSQLStates.ForeignKeyViolation
     *
     * Will attempt to extract the values of the state by doing regex over the
     * error message... yey, java?
