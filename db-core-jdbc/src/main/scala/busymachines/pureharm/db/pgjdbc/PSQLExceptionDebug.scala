@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package busymachines.pureharm.db.psql
+package busymachines.pureharm.db.pgjdbc
 
 import cats.Show
 import org.postgresql.util.PSQLException

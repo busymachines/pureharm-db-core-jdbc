@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package busymachines.pureharm.db.psql
+package busymachines.pureharm.db.pgjdbc
 
 import busymachines.pureharm.db._
 import busymachines.pureharm.effects._
@@ -32,7 +32,7 @@ object PSQLExceptionInterpreters {
     val UniqueViolation:     String = PSQLState.UNIQUE_VIOLATION.getState
   }
 
-  private[psql] object PSQLErrorParsers {
+  private[pgjdbc] object PSQLErrorParsers {
     import atto._, Atto._
     private val underscore  = char('_')
     private val closeParens = char(')')
@@ -55,7 +55,7 @@ object PSQLExceptionInterpreters {
       *   Key (id)=(row1_id) already exists.
       * }}}
       */
-    private[psql] object unique {
+    private[pgjdbc] object unique {
 
       private val parser: Parser[(String, String)] = for {
         _          <- string("Key (")
@@ -75,7 +75,7 @@ object PSQLExceptionInterpreters {
       *   Key (row_id)=(120-3921-039213) is not present in table "pureharm_rows".
       * }}}
       */
-    private[psql] object foreignKey {
+    private[pgjdbc] object foreignKey {
 
       private val parser: Parser[(String, String, String)] = for {
         _          <- string("Key (")
