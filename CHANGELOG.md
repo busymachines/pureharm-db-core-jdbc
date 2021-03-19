@@ -7,10 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 # unreleased
 
+# 0.1.0
+
 Split out from [pureharm](https://github.com/busymachines/pureharm) as of version `0.0.7`.
 
 :warning: Breaking changes :warning:
 - renamed module maven artifact ID from `pureharm-db-core-psql` to `pureharm-db-core-jdbc`
 - renamed package `busymachines.pureharm.db.psql` -> `busymachines.pureharm.db.pgjdbc`
-
-# 0.1.0
