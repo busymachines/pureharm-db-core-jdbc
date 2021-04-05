@@ -90,7 +90,7 @@ val pureharmDBCoreV    = "0.2.0"       //https://github.com/busymachines/purehar
 val attoV              = "0.9.2"       //https://github.com/tpolecat/atto/releases
 val pgJDBCV            = "42.2.19"     //java — https://github.com/pgjdbc/pgjdbc/releases
 val pureharmTestkitV   = "0.2.0"       //https://github.com/busymachines/pureharm-testkit/releases
-val log4catsV          = "1.2.0"       //https://github.com/typelevel/log4cats/releases
+val log4catsV          = "1.2.2"       //https://github.com/typelevel/log4cats/releases
 // format: on
 
 //=============================================================================
