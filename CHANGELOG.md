@@ -7,10 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 # unreleased
 
+# 0.2.0
+
+- remove dependency on `pureharm-effect-cats` in `Compile`, now only in `Test`
+
+### dependency upgrades
+
+- bump pureharm to `0.2.0`
+- bump log4cats to `1.2.2`
+- bump atto to `0.9.3`
+
 # 0.1.0
 
 Split out from [pureharm](https://github.com/busymachines/pureharm) as of version `0.0.7`.
 
 :warning: Breaking changes :warning:
+
 - renamed module maven artifact ID from `pureharm-db-core-psql` to `pureharm-db-core-jdbc`
 - renamed package `busymachines.pureharm.db.psql` -> `busymachines.pureharm.db.pgjdbc`
