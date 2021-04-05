@@ -26,7 +26,7 @@ import org.typelevel.log4cats.slf4j._
 final class PSQLExceptionParserTests extends PureharmTest {
 
   private val parsers = PSQLExceptionInterpreters.PSQLErrorParsers
-  override val testLogger: TestLogger =  TestLogger(Slf4jLogger.getLogger[IO])
+  override val testLogger: TestLogger = TestLogger(Slf4jLogger.getLogger[IO])
 
   test("unique") {
     for {

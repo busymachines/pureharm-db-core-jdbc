@@ -98,9 +98,9 @@ object PSQLExceptionInterpreters {
     * Will attempt to extract the values of the state by doing regex over the
     * error message... yey, java?
     */
-  def uniqueKey(e: PSQLException): Attempt[DBUniqueConstraintViolationAnomaly] =
+  def uniqueKey[F[_]: MonadThrow](e: PSQLException): F[DBUniqueConstraintViolationAnomaly] =
     PSQLExceptionInterpreters.PSQLErrorParsers
-      .unique[Attempt](e.getServerErrorMessage.getDetail)
+      .unique[F](e.getServerErrorMessage.getDetail)
       .map(t => DBUniqueConstraintViolationAnomaly(t._1, t._2))
 
   /** Only call when org.postgresql.util.PSQLException#getSQLState ==
@@ -109,12 +109,12 @@ object PSQLExceptionInterpreters {
     * Will attempt to extract the values of the state by doing regex over the
     * error message... yey, java?
     */
-  def foreignKey(e: PSQLException): Attempt[DBForeignKeyConstraintViolationAnomaly] = {
+  def foreignKey[F[_]: MonadThrow](e: PSQLException): F[DBForeignKeyConstraintViolationAnomaly] = {
     val msg = e.getServerErrorMessage
     for {
-      table                   <- Option(msg.getTable).liftTo[Attempt](e)
-      constraint              <- Option(msg.getConstraint).liftTo[Attempt](e)
-      (column, value, fTable) <- PSQLErrorParsers.foreignKey[Attempt](msg.getDetail)
+      table                   <- Option(msg.getTable).liftTo[F](e)
+      constraint              <- Option(msg.getConstraint).liftTo[F](e)
+      (column, value, fTable) <- PSQLErrorParsers.foreignKey[F](msg.getDetail)
     } yield DBForeignKeyConstraintViolationAnomaly(
       table        = table,
       constraint   = constraint,
@@ -127,8 +127,8 @@ object PSQLExceptionInterpreters {
   lazy val adapt: PartialFunction[Throwable, Throwable] = {
     case e: PSQLException =>
       e.getSQLState match {
-        case PSQLStates.UniqueViolation     => uniqueKey(e).getOrElse(e)
-        case PSQLStates.ForeignKeyViolation => foreignKey(e).getOrElse(e)
+        case PSQLStates.UniqueViolation     => uniqueKey[Either[Throwable, *]](e).getOrElse(e)
+        case PSQLStates.ForeignKeyViolation => foreignKey[Either[Throwable, *]](e).getOrElse(e)
         case _                              => e
       }
     case e => e
