@@ -84,16 +84,15 @@ ThisBuild / versionIntroduced := Map(
 ThisBuild / resolvers += Resolver.sonatypeRepo("releases")
 ThisBuild / resolvers += Resolver.sonatypeRepo("snapshots")
 
-val pureharmCoreV    = "0.2.0" //https://github.com/busymachines/pureharm-core/releases
-val pureharmEffectsV = "0.2.0" //https://github.com/busymachines/pureharm-effects-cats/releases
-val pureharmDBCoreV  = "0.2.0" //https://github.com/busymachines/pureharm-db-core/releases
+// format: off
+val pureharmCoreV      = "0.2.0"       //https://github.com/busymachines/pureharm-core/releases
+val pureharmDBCoreV    = "0.2.0"       //https://github.com/busymachines/pureharm-db-core/releases
+val attoV              = "0.9.2"       //https://github.com/tpolecat/atto/releases
+val pgJDBCV            = "42.2.19"     //java — https://github.com/pgjdbc/pgjdbc/releases
+val pureharmTestkitV   = "0.2.0"       //https://github.com/busymachines/pureharm-testkit/releases
+val log4catsV          = "1.2.0"       //https://github.com/typelevel/log4cats/releases
+// format: on
 
-val attoV = "0.9.2"    //https://github.com/tpolecat/atto/releases
-val pgJDBCV = "42.2.19"  //java — https://github.com/pgjdbc/pgjdbc/releases
-
-//for testing
-val pureharmTestkitV = "0.2.0" //https://github.com/busymachines/pureharm-testkit/releases
-val log4catsV = "1.2.0" //https://github.com/typelevel/log4cats/releases
 //=============================================================================
 //============================== Project details ==============================
 //=============================================================================
@@ -113,9 +112,8 @@ lazy val `db-core-jdbc` = project
     name := "pureharm-db-core-jdbc",
     libraryDependencies ++= Seq(
       "com.busymachines" %% "pureharm-core-anomaly" % pureharmCoreV    withSources(),
-      "com.busymachines" %% "pureharm-effects-cats" % pureharmEffectsV withSources(),
-      "com.busymachines" %% "pureharm-db-core"      % pureharmDBCoreV withSources(),
-      "org.tpolecat"     %% "atto-core"             % attoV            withSources (),
+      "com.busymachines" %% "pureharm-db-core"      % pureharmDBCoreV  withSources(),
+      "org.tpolecat"     %% "atto-core"             % attoV            withSources(),
       
       "org.postgresql" % "postgresql" % pgJDBCV withSources (),
 
