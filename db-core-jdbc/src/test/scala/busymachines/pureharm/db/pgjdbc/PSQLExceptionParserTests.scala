@@ -16,7 +16,7 @@
 
 package busymachines.pureharm.db.pgjdbc
 
-import busymachines.pureharm.effects._
+import cats.effect.IO
 import busymachines.pureharm.testkit._
 import org.typelevel.log4cats.slf4j._
 

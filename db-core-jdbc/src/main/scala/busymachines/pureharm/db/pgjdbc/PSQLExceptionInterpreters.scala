@@ -16,9 +16,9 @@
 
 package busymachines.pureharm.db.pgjdbc
 
+import cats._
+import cats.syntax.all._
 import busymachines.pureharm.db._
-import busymachines.pureharm.effects._
-import busymachines.pureharm.effects.implicits._
 import org.postgresql.util._
 
 /** @author Lorand Szakacs, https://github.com/lorandszakacs

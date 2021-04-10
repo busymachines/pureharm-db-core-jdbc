@@ -86,7 +86,7 @@ ThisBuild / resolvers += Resolver.sonatypeRepo("snapshots")
 
 // format: off
 val pureharmCoreV      = "0.2.0"       //https://github.com/busymachines/pureharm-core/releases
-val pureharmDBCoreV    = "0.3.0"       //https://github.com/busymachines/pureharm-db-core/releases
+val pureharmDBCoreV    = "0.4.0"       //https://github.com/busymachines/pureharm-db-core/releases
 val attoV              = "0.9.3"       //https://github.com/tpolecat/atto/releases
 val pgJDBCV            = "42.2.19"     //java — https://github.com/pgjdbc/pgjdbc/releases
 val pureharmTestkitV   = "0.3.0"       //https://github.com/busymachines/pureharm-testkit/releases
@@ -111,14 +111,14 @@ lazy val `db-core-jdbc` = project
   .settings(
     name := "pureharm-db-core-jdbc",
     libraryDependencies ++= Seq(
-      "com.busymachines" %% "pureharm-core-anomaly" % pureharmCoreV    withSources(),
-      "com.busymachines" %% "pureharm-db-core"      % pureharmDBCoreV  withSources(),
-      "org.tpolecat"     %% "atto-core"             % attoV            withSources(),
-      
-      "org.postgresql" % "postgresql" % pgJDBCV withSources (),
-
-      "com.busymachines" %% "pureharm-testkit" % pureharmTestkitV % Test withSources(),
-      "org.typelevel" %% "log4cats-slf4j"   % log4catsV % Test withSources(),
+      // format: off
+      "org.postgresql"       % "postgresql"               % pgJDBCV                   withSources(),
+      "com.busymachines"    %% "pureharm-core-anomaly"    % pureharmCoreV             withSources(),
+      "com.busymachines"    %% "pureharm-db-core"         % pureharmDBCoreV           withSources(),
+      "org.tpolecat"        %% "atto-core"                % attoV                     withSources(),
+      "com.busymachines"    %% "pureharm-testkit"         % pureharmTestkitV  % Test  withSources(),
+      "org.typelevel"       %% "log4cats-slf4j"           % log4catsV         % Test  withSources(),
+      // format: off
     ),
   ).settings(
     javaOptions ++= Seq("-source", "1.8", "-target", "1.8")
