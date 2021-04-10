@@ -129,7 +129,6 @@ lazy val `db-core-jdbc` = project
 //=============================================================================
 
 lazy val commonSettings = Seq(
-  testFrameworks += new TestFramework("munit.Framework"),
   Compile / unmanagedSourceDirectories ++= {
     val major = if (isDotty.value) "-3" else "-2"
     List(CrossType.Pure, CrossType.Full).flatMap(
