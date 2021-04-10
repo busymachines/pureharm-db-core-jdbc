@@ -13,15 +13,14 @@ Utility library to be used in other pureharm modules:
 
 ## modules
 
-- `"com.busymachines" %% s"pureharm-db-flyway" % "0.1.0"`. Which has these as its main dependencies:
+- `"com.busymachines" %% s"pureharm-db-core-jdbc" % "0.3.0"`. Which has these as its main dependencies:
   - [pgjdbc](https://github.com/pgjdbc/pgjdbc/releases) `42.2.19`
-  - [pureharm-core-anomaly](https://github.com/busymachines/pureharm-core/releases) `0.1.0`
-  - [pureharm-effects-cats](https://github.com/busymachines/pureharm-effects-cats/releases) `0.1.0`
-  - [pureharm-db-core](https://github.com/busymachines/pureharm-db-core/releases) `0.1.0`
+  - [pureharm-core-anomaly](https://github.com/busymachines/pureharm-core/releases) `0.2.0`
+  - [pureharm-db-core](https://github.com/busymachines/pureharm-db-core/releases) `0.3.0`
 
 ## usage
 
-Under construction. See [release notes](https://github.com/busymachines/pureharm-db-core/releases) and tests for examples.
+Under construction. See [release notes](https://github.com/busymachines/pureharm-db-core-jdbc/releases) and tests for examples.
 
 ## Copyright and License
 

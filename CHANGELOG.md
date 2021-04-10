@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 # unreleased
 
+# 0.3.0
+
+### dependency upgrades
+
+- [pureharm-core-anomaly](https://github.com/busymachines/pureharm-core/releases) `0.2.0`
+- [pureharm-db-core](https://github.com/busymachines/pureharm-db-core/releases) `0.3.0`
+
 # 0.2.0
 
 - remove dependency on `pureharm-effect-cats` in `Compile`, now only in `Test`
