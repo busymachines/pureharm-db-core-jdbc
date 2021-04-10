@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 # unreleased
 
+# 0.4.0
+
+### dependency upgrades
+
+- [pureharm-db-core](https://github.com/busymachines/pureharm-db-core/releases) `0.4.0`
+
 # 0.3.0
 
 ### dependency upgrades
