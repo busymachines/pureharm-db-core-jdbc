@@ -13,10 +13,10 @@ Utility library to be used in other pureharm modules:
 
 ## modules
 
-- `"com.busymachines" %% s"pureharm-db-core-jdbc" % "0.4.0"`. Which has these as its main dependencies:
-  - [pgjdbc](https://github.com/pgjdbc/pgjdbc/releases) `42.2.19`
-  - [pureharm-core-anomaly](https://github.com/busymachines/pureharm-core/releases) `0.2.0`
-  - [pureharm-db-core](https://github.com/busymachines/pureharm-db-core/releases) `0.4.0`
+- `"com.busymachines" %% s"pureharm-db-core-jdbc" % "0.5.0"`. Which has these as its main dependencies:
+  - [pgjdbc](https://github.com/pgjdbc/pgjdbc/releases) `42.2.23`
+  - [pureharm-core-anomaly](https://github.com/busymachines/pureharm-core/releases) `0.3.0`
+  - [pureharm-db-core](https://github.com/busymachines/pureharm-db-core/releases) `0.5.0`
 
 ## usage
 
