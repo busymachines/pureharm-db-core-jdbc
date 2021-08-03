@@ -129,16 +129,15 @@ lazy val `db-core-jdbc` = project
 //=============================================================================
 
 lazy val commonSettings = Seq(
-  Compile / unmanagedSourceDirectories ++= {
-    val major = if (isDotty.value) "-3" else "-2"
-    List(CrossType.Pure, CrossType.Full).flatMap(
-      _.sharedSrcDir(baseDirectory.value, "main").toList.map(f => file(f.getPath + major))
-    )
-  },
-  Test / unmanagedSourceDirectories ++= {
-    val major = if (isDotty.value) "-3" else "-2"
-    List(CrossType.Pure, CrossType.Full).flatMap(
-      _.sharedSrcDir(baseDirectory.value, "test").toList.map(f => file(f.getPath + major))
-    )
-  },
+  scalacOptions ++= scalaCompilerOptions(scalaVersion.value)
 )
+
+def scalaCompilerOptions(scalaVersion: String): Seq[String] =
+  CrossVersion.partialVersion(scalaVersion) match {
+    case Some((2, _)) =>
+      Seq[String](
+        //"-Xsource:3"
+      )
+    case _            => Seq.empty[String]
+  }
+
