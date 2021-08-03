@@ -21,8 +21,10 @@ import cats.syntax.all._
 import busymachines.pureharm.db._
 import org.postgresql.util._
 
-/** @author Lorand Szakacs, https://github.com/lorandszakacs
-  * @since 02 Jul 2020
+/** @author
+  *   Lorand Szakacs, https://github.com/lorandszakacs
+  * @since 02
+  *   Jul 2020
   */
 object PSQLExceptionInterpreters {
 
@@ -92,22 +94,18 @@ object PSQLExceptionInterpreters {
 
   }
 
-  /** Only call when org.postgresql.util.PSQLException#getSQLState ==
-    *    org.postgresql.util.PSQLStates.UniqueViolation]]
+  /** Only call when org.postgresql.util.PSQLException#getSQLState == org.postgresql.util.PSQLStates.UniqueViolation]]
     *
-    * Will attempt to extract the values of the state by doing regex over the
-    * error message... yey, java?
+    * Will attempt to extract the values of the state by doing regex over the error message... yey, java?
     */
   def uniqueKey[F[_]: MonadThrow](e: PSQLException): F[DBUniqueConstraintViolationAnomaly] =
     PSQLExceptionInterpreters.PSQLErrorParsers
       .unique[F](e.getServerErrorMessage.getDetail)
       .map(t => DBUniqueConstraintViolationAnomaly(t._1, t._2))
 
-  /** Only call when org.postgresql.util.PSQLException#getSQLState ==
-    *  org.postgresql.util.PSQLStates.ForeignKeyViolation
+  /** Only call when org.postgresql.util.PSQLException#getSQLState == org.postgresql.util.PSQLStates.ForeignKeyViolation
     *
-    * Will attempt to extract the values of the state by doing regex over the
-    * error message... yey, java?
+    * Will attempt to extract the values of the state by doing regex over the error message... yey, java?
     */
   def foreignKey[F[_]: MonadThrow](e: PSQLException): F[DBForeignKeyConstraintViolationAnomaly] = {
     val msg = e.getServerErrorMessage
