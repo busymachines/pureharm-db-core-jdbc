@@ -20,8 +20,10 @@ import cats.effect.IO
 import busymachines.pureharm.testkit._
 import org.typelevel.log4cats.slf4j._
 
-/** @author Lorand Szakacs, https://github.com/lorandszakacs
-  * @since 02 Jul 2020
+/** @author
+  *   Lorand Szakacs, https://github.com/lorandszakacs
+  * @since 02
+  *   Jul 2020
   */
 final class PSQLExceptionParserTests extends PureharmTest {
 
