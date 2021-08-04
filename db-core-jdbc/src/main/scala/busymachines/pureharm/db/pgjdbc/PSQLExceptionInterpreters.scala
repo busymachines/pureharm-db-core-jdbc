@@ -110,9 +110,10 @@ object PSQLExceptionInterpreters {
   def foreignKey[F[_]: MonadThrow](e: PSQLException): F[DBForeignKeyConstraintViolationAnomaly] = {
     val msg = e.getServerErrorMessage
     for {
-      table                   <- Option(msg.getTable).liftTo[F](e)
-      constraint              <- Option(msg.getConstraint).liftTo[F](e)
-      (column, value, fTable) <- PSQLErrorParsers.foreignKey[F](msg.getDetail)
+      table      <- Option(msg.getTable).liftTo[F](e)
+      constraint <- Option(msg.getConstraint).liftTo[F](e)
+      t          <- PSQLErrorParsers.foreignKey[F](msg.getDetail)
+      (column, value, fTable) = t
     } yield DBForeignKeyConstraintViolationAnomaly(
       table        = table,
       constraint   = constraint,
