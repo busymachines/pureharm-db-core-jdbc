@@ -32,7 +32,7 @@ val Scala3       = "3.0.1"
 //see: https://github.com/xerial/sbt-sonatype#buildsbt
 ThisBuild / sonatypeCredentialHost := "s01.oss.sonatype.org"
 
-ThisBuild / baseVersion      := "0.5"
+ThisBuild / baseVersion      := "0.6"
 ThisBuild / organization     := "com.busymachines"
 ThisBuild / organizationName := "BusyMachines"
 ThisBuild / homepage         := Option(url("https://github.com/busymachines/pureharm-db-core-jdbc"))
@@ -70,12 +70,12 @@ ThisBuild / spiewakMainBranches       := List("main")
 ThisBuild / Test / publishArtifact    := false
 
 ThisBuild / scalaVersion       := Scala213
-ThisBuild / crossScalaVersions := List(Scala213) //List(Scala213, Scala3RC1)
+ThisBuild / crossScalaVersions := List(Scala213, Scala3)
 
 //required for binary compat checks
 ThisBuild / versionIntroduced := Map(
   Scala213 -> "0.1.0",
-  Scala3   -> "0.5.0",
+  Scala3   -> "0.6.0",
 )
 
 //=============================================================================
@@ -85,12 +85,12 @@ ThisBuild / resolvers += Resolver.sonatypeRepo("releases")
 ThisBuild / resolvers += Resolver.sonatypeRepo("snapshots")
 
 // format: off
-val pureharmCoreV       = "0.3.0"       //https://github.com/busymachines/pureharm-core/releases
-val pureharmDBCoreV     = "0.5.0"       //https://github.com/busymachines/pureharm-db-core/releases
-val attoV               = "0.9.5"       //https://github.com/tpolecat/atto/releases
-val pgJDBCV             = "42.2.23"     //java — https://github.com/pgjdbc/pgjdbc/releases
-val pureharmTestkitV    = "0.4.0"       //https://github.com/busymachines/pureharm-testkit/releases
-val log4catsV           = "2.1.1"       //https://github.com/typelevel/log4cats/releases
+val pureharmCoreV         = "0.3.0"       //https://github.com/busymachines/pureharm-core/releases
+val pureharmDBCoreV       = "0.5.0"       //https://github.com/busymachines/pureharm-db-core/releases
+val attoV                 = "0.9.5"       //https://github.com/tpolecat/atto/releases
+val pgJDBCV               = "42.2.23"     //java — https://github.com/pgjdbc/pgjdbc/releases
+val pureharmTestkitV      = "0.4.0"       //https://github.com/busymachines/pureharm-testkit/releases
+val log4catsV             = "2.1.1"       //https://github.com/typelevel/log4cats/releases
 // format: on
 
 //=============================================================================

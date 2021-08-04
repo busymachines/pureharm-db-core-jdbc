@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 # unreleased
 
-# 0.5.0
+# 0.6.0
 
 This is the first release that is also available for Scala 3!
 
@@ -21,6 +21,11 @@ This is the first release that is also available for Scala 3!
 - bump scalafmt to `3.0.0-RC6` — from `2.7.5`
 - bump sbt to `1.5.5`
 - bump sbt-spiewak to `0.21.0`
+
+
+# 0.5.0
+
+Identical to `0.6.0` for Scala 2, but it failed to release for Scala 3. Otherwise it is identical.
 
 # 0.4.0
 
